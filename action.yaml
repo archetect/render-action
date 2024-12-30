@@ -29,12 +29,12 @@ runs:
     - name: Install Archetect
       shell: bash
       run: |
-        version="${{ inputs.version }}"
         echo "Download Archetect"
+        version="${{ inputs.version }}"
         pushd "${{ runner.temp }}"
         curl -LO "https://github.com/archetect/archetect/releases/download/$version/archetect-$version-linux_x64.tar.gz" 2>/dev/null
         tar -xvzf ./archetect-$version-linux_x64.tar.gz
-        mv ./archetect-$version-linux_x64./archetect .
+        mv ./archetect-$version-linux_x64/archetect .
         popd
         echo "ARCHETECT=${{ runner.temp }}/archetect" >> $GITHUB_ENV
     - name: Write Answers
@@ -49,7 +49,7 @@ runs:
       run: |
         echo "Rendering: [Source: ${{ inputs.source }}, Destination: ${{ inputs.destination }}, Arguments: ${{ inputs.args }}]"
         echo "JSON Answers:"
-        echo "${{ runner.temp }}/answers.json"
+        cat "${{ runner.temp }}/answers.json"
         flags="--headless"
         set -x
         $ARCHETECT render $flags -A "$ANSWERS" ${{ inputs.source }} ${{ inputs.args }} ${{ inputs.destination }}
