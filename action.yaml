@@ -16,7 +16,7 @@ inputs:
     required: false
     default: "."
   answers:
-    description: Answers in JSON Format.  Answers may also be applied using 'args'
+    description: Answers in JSON Object (key/value) Format.  Answers may also be applied using 'args'
     required: false
     default: "{}"
   args:
@@ -29,7 +29,7 @@ runs:
     - name: Install Archetect
       shell: bash
       run: |
-        version="${{ inputs.vesion }}"
+        version="${{ inputs.version }}"
         echo "Download Archetect"
         pushd "${{ runner.temp }}"
         curl -LO "https://github.com/archetect/archetect/releases/download/$version/archetect-$version-linux_x64.tar.gz" 2>/dev/null
@@ -50,7 +50,7 @@ runs:
         echo "Rendering: [Source: ${{ inputs.source }}, Destination: ${{ inputs.destination }}, Arguments: ${{ inputs.args }}]"
         echo "JSON Answers:"
         echo "${{ runner.temp }}/answers.json"
-        flags="--verbose --headless"
+        flags="--headless"
         set -x
         $ARCHETECT render $flags -A "$ANSWERS" ${{ inputs.source }} ${{ inputs.args }} ${{ inputs.destination }}
         set +x
