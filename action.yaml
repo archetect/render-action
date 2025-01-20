@@ -39,10 +39,12 @@ runs:
         echo "ARCHETECT=${{ runner.temp }}/archetect" >> $GITHUB_ENV
     - name: Write Answers
       shell: bash
+      env:
+        INTERNAL_ANSWERS: "${{ inputs.answers }}"
       run: |
-        internal_answers="${{ inputs.answers }}"
+        echo "$INTERNAL_ANSWERS"
         pushd "${{ runner.temp }}"
-        echo "$internal_answers" > answers.json
+        echo "$INTERNAL_ANSWERS" > answers.json
         cat answers.json
         popd
     - name: Render Archetype
