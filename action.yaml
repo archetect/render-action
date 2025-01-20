@@ -52,6 +52,6 @@ runs:
       run: |
         echo "Rendering: [Source: ${{ inputs.source }}, Destination: ${{ inputs.destination }}, Arguments: ${{ inputs.args }}]"
         echo "Answers File:"
-        #cat "${{ runner.temp }}/answers.json"
+        cat "${{ runner.temp }}/answers.json"
         flags="--headless"
-        #echo "$ARCHETECT render $flags -A $INTERNAL_ANSWERS" ${{ inputs.source }} ${{ inputs.args }} ${{ inputs.destination }}"
+        $ARCHETECT render $flags -A $INTERNAL_ANSWERS" ${{ inputs.source }} ${{ inputs.args }} ${{ inputs.destination }}
