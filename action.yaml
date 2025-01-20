@@ -41,7 +41,6 @@ runs:
       shell: bash
       run: |
         internal_answers="${{ inputs.answers }}"
-        echo "Answers Property: $internal_answers"
         pushd "${{ runner.temp }}"
         echo "$internal_answers" > answers.json
         popd
