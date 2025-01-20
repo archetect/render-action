@@ -40,6 +40,9 @@ runs:
     - name: Write Answers
       shell: bash
       run: |
+        echo "ANSWERS (Pre Write): ${{ inputs.answers }}"
+        echo "ANSWERS (fromJson): ${{ fromJson(inputs.answers) }}"
+        echo "ANSWERS (toJson): ${{ toJson(inputs.answers) }}"
         pushd "${{ runner.temp }}"
         echo "${{ inputs.answers }}" > answers.json
         popd
