@@ -41,7 +41,7 @@ runs:
       shell: bash
       run: |
         internal_answers = "${{ inputs.answers }}"
-        echo "ANSWERS (ENV): ${internal_answers}"
+        echo "ANSWERS (ENV): $internal_answers"
         echo "ANSWERS (Pre Write): ${{ inputs.answers }}"
         echo "ANSWERS (fromJson): ${{ fromJson(inputs.answers) }}"
         echo "ANSWERS (toJson): ${{ toJson(inputs.answers) }}"
