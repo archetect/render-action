@@ -41,7 +41,7 @@ runs:
       shell: bash
       run: |
         pushd "${{ runner.temp }}"
-        echo "${{ toJson(inputs.answers) }}" > answers.json
+        echo "${{ inputs.answers }}" > answers.json
         popd
         echo "ANSWERS=${{ runner.temp }}/answers.json" >> $GITHUB_ENV
     - name: Render Archetype
