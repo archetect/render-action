@@ -41,7 +41,7 @@ runs:
       shell: bash
       run: |
         pushd "${{ runner.temp }}"
-        echo "${{ inputs.answers }}" > answers.json
+        echo "${{ toJson(inputs.answers) }}" > answers.json
         popd
         echo "ANSWERS=${{ runner.temp }}/answers.json" >> $GITHUB_ENV
     - name: Render Archetype
@@ -51,6 +51,4 @@ runs:
         echo "JSON Answers:"
         cat "${{ runner.temp }}/answers.json"
         flags="--headless"
-        set -x
         $ARCHETECT render $flags -A "$ANSWERS" ${{ inputs.source }} ${{ inputs.args }} ${{ inputs.destination }}
-        set +x
