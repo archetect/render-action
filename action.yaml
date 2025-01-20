@@ -42,11 +42,12 @@ runs:
       run: |
         internal_answers="${{ inputs.answers }}"
         pushd "${{ runner.temp }}"
-        echo "$internal_answers" > answers.json
+        echo $internal_answers > answers.json
         popd
-        echo "INTERNAL_ANSWERS=${{ runner.temp }}/answers.json" >> $GITHUB_ENV
     - name: Render Archetype
       shell: bash
+      env:
+        INTERNAL_ANSWERS: "${{ runner.temp }}/answers.json"
       run: |
         echo "Rendering: [Source: ${{ inputs.source }}, Destination: ${{ inputs.destination }}, Arguments: ${{ inputs.args }}]"
         echo "Answers File:"
