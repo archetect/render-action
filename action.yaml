@@ -53,6 +53,4 @@ runs:
         echo "Answers File:"
         cat "${{ runner.temp }}/answers.json"
         flags="--headless"
-        set -x
         echo "$ARCHETECT render $flags -A $INTERNAL_ANSWERS" ${{ inputs.source }} ${{ inputs.args }} ${{ inputs.destination }}"
-        set +x
