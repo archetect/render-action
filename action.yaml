@@ -41,9 +41,9 @@ runs:
       shell: bash
       run: |
         internal_answers="${{ inputs.answers }}"
-        echo "Answers Property: $internal_answers"
+        echo "Answers Property: ${internal_answers}"
         pushd "${{ runner.temp }}"
-        echo "$internal_answers" > answers.json
+        echo "${internal_answers}" > answers.json
         popd
         echo "INTERNAL_ANSWERS=${{ runner.temp }}/answers.json" >> $GITHUB_ENV
     - name: Render Archetype
@@ -54,5 +54,5 @@ runs:
         cat "${{ runner.temp }}/answers.json"
         flags="--headless"
         set -x
-        $ARCHETECT render $flags -A "$INTERNAL_ANSWERS" ${{ inputs.source }} ${{ inputs.args }} ${{ inputs.destination }}
+        echo "$ARCHETECT render $flags -A $INTERNAL_ANSWERS" ${{ inputs.source }} ${{ inputs.args }} ${{ inputs.destination }}"
         set +x
