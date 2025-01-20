@@ -43,7 +43,7 @@ runs:
         internal_answers="${{ inputs.answers }}"
         pushd "${{ runner.temp }}"
         echo $internal_answers > answers.json
-        cat anwers.json
+        cat answers.json
         popd
     - name: Render Archetype
       shell: bash
