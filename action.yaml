@@ -41,20 +41,16 @@ runs:
       shell: bash
       run: |
         internal_answers="${{ inputs.answers }}"
-        echo "ANSWERS (ENV): $internal_answers"
-        echo "ANSWERS (Pre Write): ${{ inputs.answers }}"
-        echo "ANSWERS (fromJson): ${{ fromJson(inputs.answers) }}"
-        echo "ANSWERS (toJson): ${{ toJson(inputs.answers) }}"
-        echo  
+        echo "Answers Property: $internal_answers"
         pushd "${{ runner.temp }}"
-        echo "${{ fromJson(inputs.answers) }}" > answers.json
+        echo "$internal_answers" > answers.json
         popd
-        echo "ANSWERS=${{ runner.temp }}/answers.json" >> $GITHUB_ENV
+        echo "INTERNAL_ANSWERS=${{ runner.temp }}/answers.json" >> $GITHUB_ENV
     - name: Render Archetype
       shell: bash
       run: |
         echo "Rendering: [Source: ${{ inputs.source }}, Destination: ${{ inputs.destination }}, Arguments: ${{ inputs.args }}]"
-        echo "JSON Answers:"
+        echo "Answers File:"
         cat "${{ runner.temp }}/answers.json"
         flags="--headless"
-        $ARCHETECT render $flags -A "$ANSWERS" ${{ inputs.source }} ${{ inputs.args }} ${{ inputs.destination }}
+        $ARCHETECT render $flags -A "$INTERNAL_ANSWERS" ${{ inputs.source }} ${{ inputs.args }} ${{ inputs.destination }}
