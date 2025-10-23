@@ -7,7 +7,7 @@ inputs:
   version:
     description: The Archetect version (https://github.com/archetect/archetect/releases)
     required: false
-    default: "v2.0.0"
+    default: "v2.0.7"
   source:
     description: The source directory or Git repo containing an Archetype
     required: true
@@ -32,9 +32,9 @@ runs:
         echo "Download Archetect"
         version="${{ inputs.version }}"
         pushd "${{ runner.temp }}"
-        curl -LO "https://github.com/archetect/archetect/releases/download/$version/archetect-$version-linux_x64.tar.gz" 2>/dev/null
-        tar -xvzf ./archetect-$version-linux_x64.tar.gz
-        mv ./archetect-$version-linux_x64/archetect .
+        curl -LO "https://github.com/archetect/archetect/releases/download/$version/archetect-$version-linux-x86_64.tar.gz" 2>/dev/null
+        tar -xvzf ./archetect-$version-linux-x86_64.tar.gz
+        mv ./archetect-$version-linux-x86_64.tar.gz/archetect .
         popd
         echo "ARCHETECT=${{ runner.temp }}/archetect" >> $GITHUB_ENV
     - name: Write Answers
