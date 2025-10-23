@@ -34,7 +34,7 @@ runs:
         pushd "${{ runner.temp }}"
         curl -LO "https://github.com/archetect/archetect/releases/download/$version/archetect-$version-linux-x86_64.tar.gz" 2>/dev/null
         tar -xvzf ./archetect-$version-linux-x86_64.tar.gz
-        mv ./archetect-$version-linux-x86_64.tar.gz/archetect .
+        mv ./archetect-$version-linux-x86_64/archetect .
         popd
         echo "ARCHETECT=${{ runner.temp }}/archetect" >> $GITHUB_ENV
     - name: Write Answers
